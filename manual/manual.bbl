@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Jha et~al.(2011)Jha, Vishveshwara, and Banavar]{Jha2011}
+Anupam~Nath Jha, Saraswathi Vishveshwara, and Jayanth~R Banavar.
+\newblock {Amino acid interaction preferences in helical membrane proteins.}
+\newblock \emph{Protein engineering, design \& selection : PEDS}, 24\penalty0
+  (8):\penalty0 579--88, August 2011.
+\newblock ISSN 1741-0134.
+\newblock \doi{10.1093/protein/gzr022}.
+\newblock URL \url{http://www.ncbi.nlm.nih.gov/pubmed/21666247}.
+
+\end{thebibliography}

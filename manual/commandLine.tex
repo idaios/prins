@@ -1,0 +1,82 @@
+\chapter*{Command Line}
+
+\section*{Command Line Options}
+
+\begin{verbatim}
+
+prins -h | --help: Prints out this help
+
+-iMatrix <FileName>: imports a matrix that describes
+statistical interactions
+
+-oMatrix <FileName>: outputs the statistics for the
+interactions between residuals in a file, in a matrix form
+
+-pdb <FileName>: reads in the pdb file
+
+-o <FileName>: outputs result to a file
+
+-list <FileName>: processes a list of files. Their filenames
+are written in a list, one name in each line
+
+-threshold <float>: distance in Angstrom to consider two
+neighboring Ca atoms as interacting (default: 6.5)
+
+-membrane: analyze atoms only within the membrane
+boundaries
+
+-rfile <file name>: print out statistics from permutations of 
+the aminoacids in protein structures
+
+-nrand <int>: perform <int> randomizations (permutations) of 
+the aminoacid chain (default: 0, i.e. don't do randomizations)
+
+\end{verbatim}
+
+
+\section*{Details on the command line options}
+
+\subsection*{-h}
+\verb!-h! prints out the help for the command line, i.e. short information for each flag in the command line
+
+\subsection*{-iMatrix}
+Using the flag \verb!-iMatrix! it is possible to import an already calculated matrix describing the statistics for the aminoacid interactions. {\bf For the moment}, please use only matrices describing the interactions for environments I, II, and III, as well as the interactions within each environment. Such a matrix corresponds to the Scoring Matrices for the {\it Residue-wise contact-based environment} in the \cite{Jha2011} study. 
+
+\subsection*{-oMatrix}
+Using the flag \verb!-oMatrix! you can write in a table the matrix describing the statistics of the interactions between the residues. Again, {\bf  for the moment} this only corresponds to the {\it Residue-wise contact-based environment} in the \cite{Jha2011} study. 
+
+\subsection*{-pdb}
+Load a structure, i.e. a pdb file. If you use this option, most probably you would like to use the \verb!-iMatrix! flag as well, to specify the input matrix. 
+
+
+\subsection*{-list}
+In contrast to the \verb!-pdb! flag, you can specify a {\bf set} of pdb files within another file that contains just the filenames of the pdb files. In other words, if you would like to analyze the structures specified in the files: 1EZS.pdb, 2EZR.pdb and 2ZZR.pdb, then you should create another file, e.g. all\_files.txt, and type as contents the filenames of the files you want to analyze, i.e.: 
+
+\begin{verbatim}
+1EZS.pdb
+2EZR.pdb
+2ZZR.pdb
+\end{verbatim}
+
+
+\subsection*{-o}
+Using this flag you should specify an output file, where the results will be written to. 
+
+\subsection*{-threshold}
+With \verb!-threshold! option, you set the distance that determines whether two residues are considered neighbors (or interacting). Here, we measure by default the distance of the $C_a$ atoms of the residues. The default is 6.5 Angstrom. This means that if the distance between the $C_a$ of residues {\bf A} and {\bf B} is smaller than 6.5 Angstrom, then the residues {\bf A} and {\bf B} are considered to be neighbors (or interacting). 
+
+\subsection*{-membrane}
+Often, we have information about the location of the cellular membrane. For example, the database at \url{http://opm.phar.umich.edu/} provides information for the location of the membrane assuming alpha-helix proteins. 
+
+
+\subsection*{-nrand}
+With the \verb!-nrand! option you can specify the number of permutations for the randomization tests. In fact, what we do here, is that we calculate a score for the whole pdb file. This score is given by the formula:
+
+\begin{equation}
+z = \frac{\mu_{rand} - E_n}{\sigma_{rand}}
+\end{equation}
+
+where $\mu_{rand}$ is the mean score of a random permuation of all residues in the pdb file, $E_n$ is the score of the real protein, and $\sigma_{rand}$ is the standard deviation of the scores of the permutated sequences. 
+
+\subsection*{-rfile}
+Using the \verb!-rfile! flag, you can specify a file where to print out the statistics for the permutated sequences. In this file, the score of each permutated sequence will be printed out. Then, you can import this file in R and do some fancy statistics (i.e. histograms of scores etc). 

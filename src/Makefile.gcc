@@ -1,0 +1,28 @@
+CC = gcc
+
+CFLAGS = -Wall  -g -O3
+
+LIBRARIES = -lm 
+
+EXECNAME = prins
+
+
+OBJS = $(EXECNAME).o $(EXECNAME)_kernel.o $(EXECNAME)_input.o
+
+all: $(EXECNAME)
+$(EXECNAME): $(OBJS)
+	      $(CC) $(CFLAGS) -o $(EXECNAME) $(OBJS) $(LIBRARIES)
+	      cp prins ../bin/
+
+$(EXECNAME).o: $(EXECNAME).c $(EXECNAME).h
+	      $(CC) $(CFLAGS) -c $(EXECNAME).c
+
+$(EXECNAME)_input.o: $(EXECNAME)_input.c
+	$(CC) $(CFLAGS) -c $(EXECNAME)_input.c
+
+$(EXECNAME)_kernel.o: $(EXECNAME)_kernel.c
+	$(CC) $(CFLAGS) -c $(EXECNAME)_kernel.c
+
+clean:
+	rm $(EXECNAME)
+	rm $(OBJS)
